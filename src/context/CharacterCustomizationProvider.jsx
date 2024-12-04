@@ -1,3 +1,4 @@
+import { useThree } from "@react-three/fiber";
 import { createContext, useContext, useState } from "react";
 
 const CharacterCustomizationContext = createContext({});
@@ -10,6 +11,9 @@ const CameraModes = {
 };
 
 export const CharacterCustomizationProvider = ({ children }) => {
+  
+
+  const [takeScreenShot, setTakeScreenShot] = useState(false);
   const [cameraMode, setCameraMode] = useState(CameraModes.Free);
   const [hairColor, setHairColor] = useState();
   const [eyesColor, setEyesColor] = useState();
@@ -24,9 +28,13 @@ export const CharacterCustomizationProvider = ({ children }) => {
   const [morphTargetDictionary, setMorphTargetDictionary] = useState([]);
   const [morphTargetInfluences, setMorphTargetInfluences] = useState([]);
 
+  
+
   return (
     <CharacterCustomizationContext.Provider
       value={{
+        takeScreenShot,
+        setTakeScreenShot,
         cameraMode,
         setCameraMode,
         hairColor,
@@ -53,7 +61,7 @@ export const CharacterCustomizationProvider = ({ children }) => {
         setMorphTargetDictionary,
         morphTargetInfluences,
         setMorphTargetInfluences,
-        CameraModes
+        CameraModes,
       }}
     >
       {children}
